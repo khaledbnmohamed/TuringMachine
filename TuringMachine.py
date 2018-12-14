@@ -96,6 +96,41 @@ def SearchForTransition(position_of_head,current_state,input_tape):
 		print ("Next_transition_state is",Next_transition_state)
 
 		return Next_transition_state
+ 
+def CheckTransitionStateCharacters(number_of_transitions,number_of_alphabets):
+	if number_of_transitions is not None:
+		result = [x.strip() for x in number_of_transitions.split(',')]
+		splitted_alphabets = [x.strip() for x in number_of_alphabets.split(',')]
+		if(result[0].isdigit()==False ):
+			print("(result[0].isdigit()==False )")
+			return False
+
+		if(result[1] in splitted_alphabets):
+			pass
+		else:
+			print("for j in splitted_alphabets:")
+			return False
+
+		if(result[2].isdigit()==False ):
+			print("(result[2].isdigit()==False ")
+
+			return False
+
+		if(result[3] in splitted_alphabets):
+			pass
+		else:
+			print("result[3] in splitted_alphabets")
+			return False
+
+		if(result[4] !='y' and result[4] !='n'and result[4] !='l'and result[4] !='r'):
+			print("result[4].isdigit()==False ")
+			return False
+
+	
+
+	return True
+
+
 
 
 
@@ -123,9 +158,18 @@ print(transition_number)
 
 
 for x in range(transition_number): 
-	number_of_transitions = input("Enter transition function seprated by commas ") #(Current state,input symbol!!!!next state,new character,decision)
+	number_of_transitions = input("Enter transition function number  %s seprated by commas " % x) #(Current state,input symbol!!!!next state,new character,decision)
+	print("number_of_transitions",number_of_transitions)
+
+	if (CheckTransitionStateCharacters(number_of_transitions,alphabets)==False):	 		
+		while True:
+			number_of_transitions=input("Please re-enter valid alphabets seprated by , for transition %s "   %x)
+			if (CheckTransitionStateCharacters(number_of_transitions,alphabets)==True):
+		  		break
+
 	Store_elements('transitions',number_of_transitions,0)
 
+print(dict)
 input_tape = list(input("Enter tape "))
 input_tape.append('#')
 print(input_tape)
@@ -135,4 +179,4 @@ print(TM(input_tape,0,position_of_head))
 
 print(Final_Decision)
 
-# print(dict)
+# 
